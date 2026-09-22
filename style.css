@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+
+    --paper: #FFF;
+    --ink: #15171C;
+    --slate: #5a6472;
+    --mist: #eef0f3;
+    --line: #e2e5ea;
+    --signal: #e5372a;
+
+    --tecnologia: #2f6beb;
+    --negocios: #c07a12;
+    --ciencia: #0f8c7e;
+    --cultura: #b8348f;
+    --opiniao: #5a6472;
+}
+
+ul li {
+    list-style: none;
+}
+
+#container-header, nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+header{
+   
+}
+
+#header1{
+    position: fixed;
+    width: 100%;
+    height: 6%;
+    background-color: red;
+
+}
+
+nav{    
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        li a{
+            text-decoration: none;
+        }
+    }
+   
+}
+
+#home, #ultimas{
+    padding-top: 50px;
+}
+
+#home{
+    
+    img{
+        width: 500px;
+    }
+}
+
+.principais{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ultimasNoticias{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cardNoticia{
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid red;
+
+    .content{
+        h1 {
+            font-size: 16px;
+        }
+
+        h2 {
+            font-size: 13px;
+        }
+    }
+
+    img{
+        width: 300px;
+    }
+}
+
