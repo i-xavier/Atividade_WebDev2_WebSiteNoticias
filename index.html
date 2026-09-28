@@ -23,20 +23,24 @@
                 AO VIVO
             </p>
 
-            <button>Escuro</button>
+            <button id="theme-toggle">Escuro</button>
         </div>
 
         <hr>
 
 
         <nav>
-            <ul>
-                <li><a href="#tecnologia">Tecnologia</a></li>
-                <li><a href="#negocios">Negócios</a></li>
-                <li><a href="#ciencia">Ciência</a></li>
-                <li><a href="#cultura">Cultura</a></li>
-                <li><a href="#opiniao">Opinião</a></li>
-            </ul>
+
+            <div id="navbar">
+
+                <ul>
+                    <li><a data-id="1" class="navbar">Tecnologia</a></li>
+                    <li><a data-id="2" class="navbar">Negócios</a></li>
+                    <li><a data-id="3" class="navbar">Ciência</a></li>
+                    <li><a data-id="4" class="navbar">Cultura</a></li>
+                    <li><a data-id="5" class="navbar">Opinião</a></li>
+                </ul>
+            </div>
 
             <input type="text" id="search-bar" placeholder="Buscar notícias...">
         </nav>
@@ -46,92 +50,41 @@
 
     <main>
         <section id="home">
-            <div class="principais">
-                <article id="tecnologia" class="noticias">
-                    <img src="assets/imagem.jpg" alt="">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos nisi blanditiis alias sint
-                        quisquam ab, maxime pariatur porro facilis dignissimos adipisci labore fuga ex? Repellat,
-                        dolorem!
-                        Labore, accusantium voluptatibus.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aperiam tempore, dolorum possimus
-                        officiis, natus in facilis sed ipsa perferendis perspiciatis veniam, voluptate soluta ea omnis
-                        fuga
-                        nobis libero corporis?</p>
-                </article>
-
-                <article id="negocios" class="noticias">
-                    <img src="assets/imagem.jpg" alt="">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos nisi blanditiis alias sint
-                        quisquam ab, maxime pariatur porro facilis dignissimos adipisci labore fuga ex? Repellat,
-                        dolorem!
-                        Labore, accusantium voluptatibus.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aperiam tempore, dolorum possimus
-                        officiis, natus in facilis sed ipsa perferendis perspiciatis veniam, voluptate soluta ea omnis
-                        fuga
-                        nobis libero corporis?</p>
-                </article>
-
-                <article id="ciencia" class="noticias">
-                    <img src="assets/imagem.jpg" alt="">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos nisi blanditiis alias sint
-                        quisquam ab, maxime pariatur porro facilis dignissimos adipisci labore fuga ex? Repellat,
-                        dolorem!
-                        Labore, accusantium voluptatibus.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aperiam tempore, dolorum possimus
-                        officiis, natus in facilis sed ipsa perferendis perspiciatis veniam, voluptate soluta ea omnis
-                        fuga
-                        nobis libero corporis?</p>
-                </article>
-
-                <article id="cultura" class="noticias">
-                    <img src="assets/imagem.jpg" alt="">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos nisi blanditiis alias sint
-                        quisquam ab, maxime pariatur porro facilis dignissimos adipisci labore fuga ex? Repellat,
-                        dolorem!
-                        Labore, accusantium voluptatibus.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aperiam tempore, dolorum possimus
-                        officiis, natus in facilis sed ipsa perferendis perspiciatis veniam, voluptate soluta ea omnis
-                        fuga
-                        nobis libero corporis?</p>
-                </article>
-
-                <article id="opiniao" class="noticias">
-                    <img src="assets/imagem.jpg" alt="">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos nisi blanditiis alias sint
-                        quisquam ab, maxime pariatur porro facilis dignissimos adipisci labore fuga ex? Repellat,
-                        dolorem!
-                        Labore, accusantium voluptatibus.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aperiam tempore, dolorum possimus
-                        officiis, natus in facilis sed ipsa perferendis perspiciatis veniam, voluptate soluta ea omnis
-                        fuga
-                        nobis libero corporis?</p>
+            <div id="container-manchete">
+                <article id="manchete" class="noticias">
+                    <img src="" alt="">
+                    <h2></h2>
+                    <h1></h1>
+                    <p></p>
+                    <p>Por
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </p>
                 </article>
             </div>
 
             <aside>
-                <div class="">
-                    <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam modi vel error dolores
-                        similique, minus dolore incidunt saepe facere iure ullam deleniti. Ea, ipsa placeat aliquam vero
-                        ad numquam quae.</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta expedita reprehenderit ab
-                        explicabo. Eius, voluptatem. Aliquam rem, dolore non dolorum voluptatum iste quidem perspiciatis
-                        harum, sunt, nam est culpa earum.</p>
+                <div id="card1">
+                    <h1></h1>
+                    <p>
+                        <span></span>
+                        <span></span>
+                    </p>
                 </div>
-                <div class="">
-                    <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam modi vel error dolores
-                        similique, minus dolore incidunt saepe facere iure ullam deleniti. Ea, ipsa placeat aliquam vero
-                        ad numquam quae.</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta expedita reprehenderit ab
-                        explicabo. Eius, voluptatem. Aliquam rem, dolore non dolorum voluptatum iste quidem perspiciatis
-                        harum, sunt, nam est culpa earum.</p>
+                <div id="card2">
+                    <h1></h1>
+                    <p>
+                        <span></span>
+                        <span></span>
+                    </p>
                 </div>
-                <div class="">
-                    <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam modi vel error dolores
-                        similique, minus dolore incidunt saepe facere iure ullam deleniti. Ea, ipsa placeat aliquam vero
-                        ad numquam quae.</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta expedita reprehenderit ab
-                        explicabo. Eius, voluptatem. Aliquam rem, dolore non dolorum voluptatum iste quidem perspiciatis
-                        harum, sunt, nam est culpa earum.</p>
+                <div id="card3">
+                    <h1></h1>
+                    <p>
+                        <span></span>
+                        <span></span>
+                    </p>
                 </div>
             </aside>
         </section>
@@ -142,92 +95,18 @@
                     Últimas
                 </h1>
                 <div class="">
-                    <button>Todas</button>
-                    <button>Tecnologia</button>
-                    <button>Negócios</button>
-                    <button>Ciência</button>
-                    <button>Cultura</button>
-                    <button>Opinião</button>
+                    <button class="btnUltimas" data-id=" ">Todas</button>
+                    <button clas="btnUltimas" data-id="tecnologia">Tecnologia</button>
+                    <button clas="btnUltimas" data-id="negocios">Negócios</button>
+                    <button clas="btnUltimas" data-id="ciencia">Ciência</button>
+                    <button clas="btnUltimas" data-id="cultura">Cultura</button>
+                    <button clas="btnUltimas" data-id="opiniao">Opinião</button>
                 </div>
             </header>
 
-            <div class="ultimasNoticias">
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
+            <div id="ultimasNoticias">
 
-                    <div class="content">
-                        <h2>TECNOLOGIA</h2>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro perferendis quibusdam maiores
-                            assumenda officia excepturi velit, illum molestias placeat ullam cum recusandae libero
-                            facilis, omnis deleniti pariatur ad ab iste.</h1>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
-
-                    <div class="content">
-                        <h2>TECNOLOGIA</h2>
-                        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio libero in delectus
-                            aspernatur fugiat temporibus commodi eius veniam quidem! Corporis necessitatibus doloremque
-                            magnam quasi possimus laboriosam molestiae iusto debitis dolor?</h1>
-                        <p></p>
-                    </div>
-
-                </div>
-
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
-
-                    <div class="content">
-                        <h2>NEGÓCIOS</h2>
-                        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto quo, veritatis vitae
-                            pariatur fuga sit ut cumque quia quisquam distinctio iusto, accusantium magnam fugit
-                            obcaecati quidem dicta. Dolor, cum!</h1>
-                        <p></p>
-                    </div>
-
-                </div>
-
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
-
-                    <div class="content">
-                        <h2>CIÊNCIA</h2>
-                        <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis placeat ipsam est
-                            ipsa obcaecati fugiat earum suscipit similique quo repellendus dolorum, optio maxime quas.
-                            Natus nobis quidem maxime quisquam assumenda.</h1>
-                        <p></p>
-                    </div>
-
-                </div>
-
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
-
-                    <div class="content">
-                        <h2>CULTURA</h2>
-                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe unde est recusandae cumque
-                            consequuntur veritatis dolorum similique, accusamus eius dignissimos voluptatem deleniti
-                            nemo consectetur nobis repellat? Fuga atque asperiores quisquam.</h1>
-                        <p></p>
-                    </div>
-
-                </div>
-
-                <div class="cardNoticia">
-                    <img src="assets/imagem.jpg" alt="">
-
-                    <div class="content">
-                        <h2>TECNOLOGIA</h2>
-                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro eveniet nihil perferendis
-                            harum placeat numquam optio tenetur repellat vero, velit veritatis mollitia eligendi neque
-                            aperiam id magni officiis voluptas deserunt.</h1>
-                        <p></p>
-                    </div>
-
-                </div>
+            </div>
 
             </div>
             <button>
