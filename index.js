@@ -1,482 +1,507 @@
-const navbar = document.getElementById("navbar");
-const ultimas = document.getElementById("ultimasNoticias");
-const inputFiltro = document.getElementById("search-bar");
-const btn = document.getElementsByClassName("btnUltimas");
-const u = document.getElementById("ultimas");
+const logo = document.getElementById("logo"); //aponta para o logo
+const navbar = document.getElementById("navbar"); //aponta pra barra de navegação
+const noticia = document.getElementById("manchete"); //aponta para o espaço que fica a manchete
+const ultimas = document.getElementById("ultimasNoticias"); //aponta pro espaço que carrega as últimas notícias
+const inputFiltro = document.getElementById("search-bar"); //aponta pro serach bar
+const btnUltimasNoticias = document.querySelectorAll(".btnUltimas"); //aponta pros botões que manipulam a aba de últimas notícias
+const carregar = document.getElementById("carregar-mais"); //aponta pro botão que carrega mais notícias
+const formNewsletter = document.querySelector("form"); //aponta pro formulário de newsletter
+let carregarMais = 3; //contador que controla a quantidade máxima de notícias exibidas
 
 
 const noticiasIniciais = [
-    // -------------------------------------------------------------
-    // DESTAQUE PRINCIPAL (HERO)
-    // -------------------------------------------------------------
     {
         id: 1,
-        titulo: "Padrões da web em 2026: o que muda para quem desenvolve interfaces",
-        resumo: "Novas APIs de layout e recursos nativos do navegador prometem reduzir a dependência de bibliotecas externas e mudar a rotina de quem trabalha com front-end.",
-        categoria: "tecnologia",
-        autor: "Marina Alves",
-        data: "21 set 2026",
+        titulo: "O que aconteceria se a Terra parasse de girar por um segundo?",
+        resumo: "A física explica o cenário catastrófico: ventos supersônicos, tsunamis globais e dias que durariam meses. Entenda as consequências extremas para a vida no planeta.",
+        categoria: "Ciência",
+        autor: "Marcos Nogueira",
+        data: "29 set 2026",
         tempoLeitura: "6 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Ilustração representativa da editoria de Tecnologia",
+        //as imagens são aleatórias e pegas no picsum
+        imagem: "https://picsum.photos/800/400?random=1",
+        alt: "Ilustração do planeta Terra visto do espaço",
         destaque: true,
         posicaoDestaque: 0
     },
-
-    // -------------------------------------------------------------
-    // DESTAQUES SECUNDÁRIOS (LATERAL DO HERO / RANKING 1, 2, 3)
-    // -------------------------------------------------------------
     {
         id: 2,
-        titulo: "Startups brasileiras de software crescem 18% no primeiro semestre",
-        resumo: "Aumento nos investimentos em inteligência artificial impulsiona o ecossistema nacional de tecnologia.",
-        categoria: "negocios",
-        autor: "Diego Prado",
-        data: "20 set 2026",
-        tempoLeitura: "3 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Gráfico de crescimento de startups de software",
+        titulo: "A cidade perdida sob a Amazônia finalmente revelada por lasers",
+        resumo: "Arqueólogos utilizam tecnologia LiDAR para mapear pirâmides e estradas milenares escondidas sob a densa vegetação.",
+        categoria: "História",
+        autor: "Helena Ferraz",
+        data: "28 set 2026",
+        tempoLeitura: "4 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=2",
+        alt: "Ruínas antigas cobertas por musgo e árvores",
         destaque: true,
         posicaoDestaque: 1
     },
     {
         id: 3,
-        titulo: "Pesquisadores criam método mais eficiente para comprimir dados de sensores",
-        resumo: "Novo algoritmo reduz a largura de banda necessária sem perda de precisão em dispositivos IoT.",
-        categoria: "ciencia",
+        titulo: "Inteligência Artificial já consegue traduzir a linguagem dos golfinhos",
+        resumo: "Pesquisadores treinam redes neurais avançadas para decodificar os complexos assobios e cliques dos cetáceos.",
+        categoria: "Tecnologia",
         autor: "Lucas Mendes",
-        data: "20 set 2026",
-        tempoLeitura: "4 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Representação visual de sensores e transmissão de dados",
+        data: "28 set 2026",
+        tempoLeitura: "3 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=3",
+        alt: "Golfinho nadando em mar cristalino",
         destaque: true,
         posicaoDestaque: 2
     },
     {
         id: 4,
-        titulo: "Museus digitais ganham espaço e repensam a experiência de visitação",
-        resumo: "Exposições interativas e imersivas atraem público jovem e transformam o papel dos acervos históricos.",
-        categoria: "cultura",
+        titulo: "Por que o seu cérebro apaga as memórias da infância?",
+        resumo: "A 'amnésia infantil' tem uma explicação evolutiva surpreendente ligada ao desenvolvimento de novos neurônios.",
+        categoria: "Mente",
         autor: "Beatriz Nunes",
-        data: "19 set 2026",
+        data: "27 set 2026",
         tempoLeitura: "5 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Pessoas interagindo com projeções digitais em um museu",
+        imagem: "https://picsum.photos/400/250?random=4",
+        alt: "Criança correndo em um campo borrado, simbolizando memórias",
         destaque: true,
         posicaoDestaque: 3
     },
     {
         id: 5,
-        titulo: "Museus digitais ganham espaço e repensam a experiência de visitação",
-        resumo: "Exposições interativas e imersivas atraem público jovem e transformam o papel dos acervos históricos.",
-        categoria: "opinião",
-        autor: "Beatriz Nunes",
-        data: "19 set 2026",
-        tempoLeitura: "5 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Pessoas interagindo com projeções digitais em um museu",
+        titulo: "O verdadeiro motivo pelo qual os gatos 'amassam pãozinhos'",
+        resumo: "Descubra a origem evolutiva desse comportamento felino peculiar e o que ele diz sobre o bem-estar do seu pet.",
+        categoria: "Cultura",
+        autor: "Camila Rocha",
+        data: "27 set 2026",
+        tempoLeitura: "4 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=5",
+        alt: "Gato amassando um cobertor macio",
         destaque: true,
         posicaoDestaque: 4
     },
-
-    // -------------------------------------------------------------
-    // SEÇÃO "ÚLTIMAS NOTÍCIAS" (GRADE DE CARDS)
-    // -------------------------------------------------------------
     {
         id: 6,
-        titulo: "CSS ganha novos recursos de container queries que simplificam a responsividade",
-        resumo: "Desenvolvedores agora podem estilizar elementos com base no tamanho do seu contêiner pai, e não apenas na viewport.",
-        categoria: "tecnologia",
+        titulo: "Como os romanos faziam um concreto que dura até hoje (e os nossos racham)?",
+        resumo: "O segredo de 2.000 anos envolve cal viva, cinzas vulcânicas e uma reação química que 'conserta' as próprias rachaduras.",
+        categoria: "História",
         autor: "Rafael Costa",
-        data: "21 set 2026",
-        tempoLeitura: "4 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Código CSS sendo editado em uma tela de computador",
+        data: "26 set 2026",
+        tempoLeitura: "6 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=6",
+        alt: "Estrutura do Panteão Romano resistindo ao tempo",
         destaque: false
     },
     {
         id: 7,
-        titulo: "JavaScript: o que esperar da próxima versão da linguagem",
-        resumo: "Propostas avançadas no TC39 trazem novidades em imutabilidade e novos métodos auxiliares para coleções.",
-        categoria: "tecnologia",
-        autor: "Beatriz Nunes",
-        data: "21 set 2026",
+        titulo: "O mistério do 'Sinal Wow!' e a busca por vida extraterrestre",
+        resumo: "Quase 50 anos depois, astrônomos formulam uma nova e controversa teoria sobre o famoso sinal de rádio captado do espaço.",
+        categoria: "Ciência",
+        autor: "Marcos Nogueira",
+        data: "26 set 2026",
         tempoLeitura: "5 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Logotipo estilizado da linguagem JavaScript",
+        imagem: "https://picsum.photos/400/250?random=7",
+        alt: "Telescópio de rádio apontado para o céu estrelado",
         destaque: false
     },
     {
         id: 8,
-        titulo: "Empresas aceleram transição para modelos sustentáveis no setor de tecnologia",
-        resumo: "Relatórios apontam redução na emissão de carbono em data centers com adoção de energias limpas.",
-        categoria: "negocios",
-        autor: "Diego Prado",
-        data: "20 set 2026",
-        tempoLeitura: "3 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Servidores em um data center iluminado com luz verde",
+        titulo: "Filmes de terror realmente ajudam a combater a ansiedade?",
+        resumo: "Psicólogos explicam por que simular o medo em um ambiente controlado pode trazer alívio inesperado para o cérebro.",
+        categoria: "Mente",
+        autor: "Beatriz Nunes",
+        data: "25 set 2026",
+        tempoLeitura: "4 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=8",
+        alt: "Pessoa assistindo filme no escuro iluminada apenas pela TV",
         destaque: false
     },
     {
         id: 9,
-        titulo: "Baterias de estado sólido avançam em testes de laboratório",
-        resumo: "Nova química promete dobrar a densidade energética de veículos elétricos mantendo a segurança.",
-        categoria: "ciencia",
-        autor: "Camila Rocha",
-        data: "20 set 2026",
-        tempoLeitura: "5 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Células de bateria sendo analisadas em um laboratório",
+        titulo: "A primeira bateria movida a suor humano já é uma realidade",
+        resumo: "Adesivos bioeletrônicos ultramodernos prometem carregar smartwatches enquanto você realiza exercícios físicos intensos.",
+        categoria: "Tecnologia",
+        autor: "Lucas Mendes",
+        data: "25 set 2026",
+        tempoLeitura: "3 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=9",
+        alt: "Corredor suando com adesivo tecnológico no braço",
         destaque: false
     },
     {
         id: 10,
-        titulo: "Podcasts independentes batem recorde de audiência no país",
-        resumo: "Produções focadas em ciência, história e reflexões sociais ganham destaque nas plataformas de áudio.",
-        categoria: "cultura",
+        titulo: "Por que a música pop está ficando cada vez mais triste e lenta?",
+        resumo: "Uma análise feita por algoritmos revela que os andamentos caíram e as letras se tornaram mais melancólicas nas últimas duas décadas.",
+        categoria: "Cultura",
         autor: "Gabriel Lima",
-        data: "19 set 2026",
+        data: "24 set 2026",
         tempoLeitura: "4 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Microfone profissional em um estúdio de gravação de áudio",
+        imagem: "https://picsum.photos/400/250?random=10",
+        alt: "Discos de vinil ao lado de fones de ouvido modernos",
         destaque: false
     },
     {
         id: 11,
-        titulo: "Acessibilidade digital vira exigência em novos projetos públicos",
-        resumo: "Diretrizes de WCAG tornam-se critério obrigatório em portais de serviços essenciais ao cidadão.",
-        categoria: "opiniao",
+        titulo: "O que são 'Zumbis Espaciais' e por que a NASA está de olho neles?",
+        resumo: "Estrelas mortas que ressuscitam ao roubar energia gravitacional de suas vizinhas estão intrigando as agências espaciais.",
+        categoria: "Ciência",
         autor: "Helena Ferraz",
-        data: "19 set 2026",
-        tempoLeitura: "6 min de leitura",
-        imagem: "assets/imagem.jpg",
-        alt: "Pessoa utilizando leitor de tela em um notebook",
+        data: "24 set 2026",
+        tempoLeitura: "7 min de leitura",
+        imagem: "https://picsum.photos/400/250?random=11",
+        alt: "Concepção artística de duas estrelas orbitando muito próximas",
         destaque: false
     }
 ];
 
-let noticias = noticiasIniciais;
-let textoBusca;
-
-// Array temporário só com os destaques para o carrossel
-const destaquesCarrossel = noticias.filter(item => item.destaque === true);
-const outrasNoticias = noticias.filter(item => item.destaque === false);
+let noticias = noticiasIniciais; //variável de manipulação dos dados de notícia recebe algumas notícias como default de outro array
+let filtroAtualUltimas = [];
+let textoBusca; //texto escrito na barra de busca
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    //carrega na variável os dados salvos em localStorage
     const dadosSalvos = JSON.parse(localStorage.getItem("noticias"));
-    const listaUltimas = gerenciarUltimas();
 
     if (dadosSalvos) {
+        //caso tenha dados salvos no localStorage a variável que guarda o array de noitícias é atualizada
         noticias = dadosSalvos;
     }
-
-
-
+    //é carregado todas as últimas notícias como padrão
+    const listaUltimas = gerenciarUltimas("todas");
+    //adiciona as notícias na tela
     addNoticiasHome();
     addUltimasNoticias(listaUltimas);
-
 })
 
+//evento que controla o botão de carregar mais notícias
+carregar.addEventListener("click", (e) => {
+    //recebe o data id do botão
+    //const click = e.target.dataset.id;
+    const lista = filtroAtualUltimas;
 
-// Para pegar a primeira notícia (ou notícia principal atual):
-//const noticiaPrincipal = noticias.find(item => item.posicaoDestaque === 0);
+    //se o total de notícias for maior que o valor da variável carregarMais, é somado mostrado mais 3 notícias e atualizado na tela
+    if (carregarMais < lista.length) {
+        carregarMais = carregarMais + 3;
+        addUltimasNoticias(lista);
+        atualizarCarregarBtn(lista);
+        //caso todas as notícias tenhams ido mostradas, o botão some
+    }
+})
 
+const atualizarCarregarBtn = (lista) =>{
+    if (carregarMais >= lista.length) {
+        carregar.style.display = 'none';
+    }
+}
+
+//evento que controla a barra de navegação
 navbar.addEventListener("click", (e) => {
-
     e.preventDefault();
-
+    //recebe o data id do botão
     const click = e.target.dataset.id;
+    if (!click) return;
+    //filtra as notícias e cria uma nova lista apenas com as notícias destaques
+    const destaquesCarrossel = noticias.filter(item => item.destaque === true);
+    //passa o indície compatível com o assunto que foi clicado
     const indiceClicado = destaquesCarrossel.findIndex(n => n.id === Number(click));
 
-    // console.log("indice: " + indiceClicado)
-
+    //arruma a ordem da notícia destaque e das notícias que ficam ao lado
     gerenciarCarrosel(indiceClicado);
+    //adiciona na tela
     addNoticiasHome();
-    //mostrarManchete(click);
+});
 
+//evento que manipula os botões da aba últimas notícias
+btnUltimasNoticias.forEach(botao => {
+    //"ouve" cada um dos botões pra encontrar qual foi clicado
+    botao.addEventListener("click", (e) => {
+        e.preventDefault();
+        const click = e.target.dataset.id;
+        if (!click) return;
 
-    /*
-        1 - apontar pro local que o sistema vai capturar o evento
-        2 - capturar evento
-        3 - capturar a tag/categoria do botão
-        4 - buscar no array (analisar quais são destaque e possuem a tag exata do botão clicado)
-        5 - após encontrar a notícia, reescrever dom
-    
-    */
-})
+        //passa o tema que foi clicado para ser filtrado 
+        const ult = gerenciarUltimas(click);
+        //mostra na tela após o filtro
+        addUltimasNoticias(ult);
+    });
+});
 
+//evento que manipula o filtro da barra de pesquisa
 inputFiltro.addEventListener('input', (e) => {
     e.preventDefault();
 
+    //captura e trata o testo digitado
     textoBusca = e.target.value.toLowerCase();
 
-    // console.log(textoBusca);
     const tela = document.getElementById("ultimasNoticias");
+
+    //apaga todos os filhos que estão na tela para carregar novos
     limparUltimasNoticias(tela);
 
     const lista = gerenciarUltimas();
 
-    //lista.forEach(noticia => {
-
-    //console.log(noticia.titulo);
-    //const indice = lista.findIndex(n => n.id === noticia.id);
     addUltimasNoticias(lista);
-
-    //})
-
-
 })
 
-const mostrarManchete = function (id) {
+const addNoticiasHome = () => {
 
-    noticias.find(function (n) {
-        // console.log("Entrou no find")
-
-        if (n.id == id) {
-            addManchete(n);
-        }
-    })
-}
-
-const addNoticiasHome = (/*indice*/) => {
-
-    // console.log("entrou");
-
-    /*destaquesCarrossel.forEach(n => {
-        if (noticias[indice].posicaoDestaque == 0) {
-
-            const noticia = document.getElementById("manchete");
-            const filhos = noticia.children;
-            const filhosParagrafo = filhos[4].children;
-
-            filhos[0].src = noticias[indice].imagem;
-
-            filhos[1].innerText = noticias[indice].categoria;
-
-            filhos[2].innerText = noticias[indice].titulo;
-
-            filhos[3].innerText = noticias[indice].resumo;
-
-
-            filhosParagrafo[0].innerText = noticias[indice].autor;
-            filhosParagrafo[1].innerText = noticias[indice].data;
-            filhosParagrafo[2].innerText = noticias[indice].tempoLeitura;
-
-        } else if (noticias[indice].posicaoDestaque >= 1 && noticias[indice].posicaoDestaque < 4) {
-            const indice = noticias[indice].posicaoDestaque;
-            const noticia = document.getElementById(indice);
-            const filhos = noticia.children;
-            const filhosSpan = filhos[1].children;
-
-            filhos[0].innerText = noticias[indice].titulo;
-            filhosSpan[0].innerText = noticias[indice].categoria;
-            filhosSpan[1].innerText = noticias[indice].data;
-        }
-    })*/
+    //filtra as notícias destaque
+    const destaquesCarrossel = noticias.filter(item => item.destaque === true);
 
     destaquesCarrossel.forEach(n => {
+        //se estiver na posição principal (0) recebe um tratamento diferente
         if (n.posicaoDestaque == 0) {
 
-            const noticia = document.getElementById("manchete");
+            // Animação
+            noticia.classList.remove("fade-in");
+            void noticia.offsetWidth; // Força o reflow para a animação reiniciar
+            noticia.classList.add("fade-in");
+            // --------------------------
+
+            //pega a lista de filhos do espaço que fica a manchete e do paragrafo que contem autor, data e tempo de leitura
             const filhos = noticia.children;
             const filhosParagrafo = filhos[4].children;
 
             filhos[0].src = n.imagem;
+            filhos[0].alt = n.alt;
 
             filhos[1].innerText = n.categoria;
+            filhos[1].className = "cat-" + formatarCategoria(n.categoria); //formata a categoria retirando os acentos
 
             filhos[2].innerText = n.titulo;
 
             filhos[3].innerText = n.resumo;
 
-
             filhosParagrafo[0].innerText = n.autor;
             filhosParagrafo[1].innerText = n.data;
             filhosParagrafo[2].innerText = n.tempoLeitura;
 
+            //avalia se a noticia esta como destaque
         } else if (n.posicaoDestaque >= 1 && n.posicaoDestaque < 4) {
+            //pega a posição do card
             const indice = n.posicaoDestaque;
             const noticia = document.getElementById("card" + indice);
+
+            //  ANIMAÇÃO
+            noticia.classList.remove("fade-in");
+            void noticia.offsetWidth; // Força o reflow para a animação reiniciar
+            noticia.classList.add("fade-in");
+            // --------------------------
+
             const filhos = noticia.children;
             const filhosSpan = filhos[1].children;
 
             filhos[0].innerText = n.titulo;
+
             filhosSpan[0].innerText = n.categoria;
+            filhosSpan[0].className = "cat-" + formatarCategoria(n.categoria);
+
             filhosSpan[1].innerText = n.data;
         }
     })
 }
 
-
-u.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const click = e.target.dataset.id;
-    //const indiceClicado = [];
-    //outrasNoticias.findIndex(n => n.id === Number(click));
-    const ult = gerenciarUltimas(click);
-
-    const tela = document.getElementById("ultimasNoticias");
-    limparUltimasNoticias(tela);
-
-    //console.log(quantidade);
-
-
-
-    //ult.forEach(noticia => {
-
-    // console.log(noticia.categoria);
-    //const indice = ult.findIndex(n => n.id === noticia.id);
-    addUltimasNoticias(ult);
-
-    //})
-
-
-    // console.log(click);
-    //console.log(indiceClicado);
-
-
-
-})
-
 const addUltimasNoticias = (lista) => {
+    limparUltimasNoticias();
 
-    lista.forEach(noticia => {
+    for (let i = 0; i < lista.length; i++) {
+        //impede que o sistema ultrapasse o valor limite de notícias que devem ser carregadas
+        if (i >= carregarMais) {
+            break;
+        }
 
-        const imagem = noticia.imagem;
-        const categoria = noticia.categoria;
-        const titulo = noticia.titulo;
-        const autor = noticia.autor;
-        const data = noticia.data;
+        const imagem = lista[i].imagem;
+        const categoria = lista[i].categoria;
+        const titulo = lista[i].titulo;
+        const autor = lista[i].autor;
+        const data = lista[i].data;
 
         const div = document.createElement("div");
-        div.id = noticia.id;
-        div.classList.add("cardUltimasNoticias");
+        div.id = lista[i].id;
+        div.classList.add("cardUltimasNoticias", "fade-in");
 
+        //Adiciona o span que vai conter a imagem
         const spanImg = document.createElement("span");
+        spanImg.classList.add("imgUltimasNoticias");
         const contentImg = document.createElement("img");
+        contentImg.setAttribute("alt", lista[i].alt);
         contentImg.setAttribute("src", imagem);
         spanImg.appendChild(contentImg);
 
+        //Adiciona o span que vai conter a categoria
         const spanCategoria = document.createElement("span");
+        const catFormatada = formatarCategoria(categoria); //chama a função de formatação do texto categoria
+        // Adiciona a classe da categoria e a classe para formatar o botão
+        spanCategoria.classList.add("categoriaUltimasNoticias", "cat-" + catFormatada);
         const contentCategoria = document.createTextNode(categoria);
         spanCategoria.appendChild(contentCategoria);
 
+        //Adiciona o span que controla o titulo
         const spanTitulo = document.createElement("span");
+        spanTitulo.classList.add("tituloUltimasNoticias");
         const contentTitulo = document.createTextNode(titulo);
         spanTitulo.appendChild(contentTitulo);
 
+        //Adiciona o span que mostra o autor
         const spanAutor = document.createElement("span");
+        spanAutor.classList.add("autorUltimasNoticias");
         const contentAutor = document.createTextNode(autor);
         spanAutor.appendChild(contentAutor);
 
+        //Adiciona o span que mostra a data
         const spanData = document.createElement("span");
+        spanData.classList.add("dataUltimasNoticias");
         const contentData = document.createTextNode(data);
         spanData.appendChild(contentData);
 
+        //guarda os filhos na div que guardará a notiícia
         div.appendChild(spanImg);
         div.appendChild(spanCategoria);
         div.appendChild(spanTitulo);
         div.appendChild(spanAutor);
         div.appendChild(spanData);
 
+        //guarda no espaço que ficará as notícias
         ultimas.appendChild(div);
-    })
+    }
 }
 
-const limparUltimasNoticias = (elemento) => {
-    //div.remove();
+const limparUltimasNoticias = () => {
 
-    while (elemento.firstChild) {
-        elemento.removeChild(elemento.firstChild);
+    //enquanto houver elementos filhos vai apagando um a um desse espaço 
+    while (ultimas.firstChild) {
+        ultimas.removeChild(ultimas.firstChild);
     }
 }
 
 const gerenciarUltimas = (click) => {
 
+    // carrega apenas as últimas notícias
     let array = noticias.filter(item => item.destaque === false);
 
-    console.log(click)
-
-    if (click !== undefined) {
-        //array = noticias.filter(item => item.destaque === false && item.categoria === click);
-
-        switch (click) {
-            case 'tecnologia':
-                array = noticias.filter(item => item.destaque === false && item.categoria === 'tecnologia'); break;
-            case 'negocios':
-                array = noticias.filter(item => item.destaque === false && item.categoria === 'negocios'); break;
-            case 'ciencia':
-                array = noticias.filter(item => item.destaque === false && item.categoria === 'ciencia'); break;
-            case 'cultura':
-                array = noticias.filter(item => item.destaque === false && item.categoria === 'cultura'); break;
-            case 'opiniao':
-                array = noticias.filter(item => item.destaque === false && item.categoria === 'opiniao'); break;
-        }
-    } 
-
-    if (textoBusca != undefined) {
-        const busca = array.filter(n => n.titulo.toLowerCase().includes(textoBusca))
-        return busca;
+    // se click foi feito no botão de carregar mais notícias, o valor é resetado
+    if (click !== 'carregar') {
+        resetarCarregarMais();
     }
 
+    //analisa se o click possui os valores de categoria
+    if (click !== undefined && click !== "todas" && click !== "carregar") {
+        switch (click) {
+            case 'ciencia':
+                array = noticias.filter(item => item.destaque === false && item.categoria === 'Ciência');
+                break;
+            case 'historia':
+                array = noticias.filter(item => item.destaque === false && item.categoria === 'História');
+                break;
+            case 'tecnologia':
+                array = noticias.filter(item => item.destaque === false && item.categoria === 'Tecnologia');
+                break;
+            case 'cultura':
+                array = noticias.filter(item => item.destaque === false && item.categoria === 'Cultura');
+                break;
+            case 'mente':
+                array = noticias.filter(item => item.destaque === false && item.categoria === 'Mente');
+                break;
+        }
+    }
+    //se houver texto na barra de buscas, cria uma nova lista já filtrada com o texto inputado
+    if (textoBusca !== undefined && textoBusca !== "") {
+        const busca = array.filter(n => n.titulo.toLowerCase().includes(textoBusca))
+        filtroAtualUltimas = busca;
+        atualizarCarregarBtn(busca);
+        return busca;
+    }
+    atualizarCarregarBtn(array);
+    filtroAtualUltimas = array;
     return array;
 }
 
+//O carrossel é gerenciado utilizando um array circular
 const gerenciarCarrosel = (id) => {
 
-
-    //console.log("antes");
-    destaquesCarrossel.forEach(n => {
-        //console.log(n.posicaoDestaque);
-    })
-
-
+    //filtra as notícias em destaque e coloca em uma lista
+    const destaquesCarrossel = noticias.filter(item => item.destaque === true);
     let posicao;
+    //O array começa a ser percorrido a partir do id da notícia que foi clicada
     let indice = id;
+    //variavel que determina os novos valores das posições de cada notícia
     let total = 0;
 
-
+    //Loopings são feitos enquanto há valores no array
     while (total < destaquesCarrossel.length) {
 
+        //calcula o indice do array daquele elemento
         posicao = indice % destaquesCarrossel.length;
-
-        /*destaquesCarrossel.find(n =>{
-            if(n.id == (posicao + 1)){
-                n.posicaoDestaque = total;
-            }
-        })*/
 
         destaquesCarrossel[posicao].posicaoDestaque = total;
 
         indice++
         total++;
     }
-
-
-    //Colocar localStorage depois
+    //salva no localStorage
     localStorage.setItem("noticias", JSON.stringify(noticias));
 }
 
-
+//aponta pro botão que ativa o dark mode
 const toggleButton = document.getElementById('theme-toggle');
 const html = document.documentElement;
 
 // Carregar tema salvo ou preferido pelo sistema
-const savedTheme = localStorage.getItem('theme');
+const temaSalvo = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-  html.setAttribute('data-theme', 'dark');
+//Aplica o tema dark caso o tema salvo seva equivalente
+if (temaSalvo === 'dark' || (!temaSalvo && systemPrefersDark)) {
+    html.setAttribute('data-theme', 'dark');
+    logo.setAttribute("src", "assets/logo-light.svg")
+} else {
+    logo.setAttribute("src", "assets/logo-light.svg")
 }
 
 // Alternar tema ao clicar
 toggleButton.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});   
+
+    const temaAtual = html.getAttribute('data-theme');
+
+    const novoTema = temaAtual === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', novoTema);
+
+    localStorage.setItem('theme', novoTema);
+
+
+    //Gerencia qual logo mostrar dependendo do tema
+    if (novoTema === "dark") {
+        logo.setAttribute("src", "assets/logo-light.svg")
+    } else {
+        logo.setAttribute("src", "assets/logo-dark.svg")
+    }
+});
+
+// Reseta a variável carregar mais
+const resetarCarregarMais = () => {
+    carregarMais = 3;
+    carregar.style.display = 'block'
+}
+
+// ouve o envio de email no formulário do footer
+formNewsletter.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+
+    if (validarEmail(email)) {
+        alert("E-mail válido.");
+    } else {
+        alert("E-mail inválido.")
+    }
+})
+
+const validarEmail = function (email) {
+    //avalia se a estrutura do input é a mesma do regex
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    //testa e retorna um booleano
+    return regex.test(email);
+}
+
+//formata o texto da categoria retirando acentos
+const formatarCategoria = (texto) => {
+    return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};

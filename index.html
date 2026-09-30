@@ -1,75 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
+    <!-- Codificação de caracteres (garante acentos e "ç" corretos) -->
     <meta charset="UTF-8">
+    <!-- Faz o site se ajustar à largura da tela no celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
+    <!-- Título que aparece na aba do navegador -->
+    <title>CuriosaMente - Portal de Ciência e Curiosidades</title>
+
+    <!-- Liga o arquivo de estilos -->
     <link rel="stylesheet" href="style.css">
+    <!-- Liga o JavaScript. O "defer" espera o HTML carregar antes de rodar -->
     <script src="index.js" defer></script>
+
+    <!-- Google Fonts: o preconnect abre a conexão com antecedência
+         para as fontes carregarem mais rápido -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonte Inter (textos em geral) -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+    <!-- Fontes Newsreader (títulos) e Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Newsreader&family=Inter&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- ===== Cabeçalho (fica fixo no topo) ===== -->
     <header id="header1">
+        <!-- Linha de cima: indicador "AO VIVO" e botão de tema -->
         <div id="container-header">
+            <!-- A bolinha vermelha piscando é criada pelo CSS -->
             <p id="aovivo">
                 AO VIVO
             </p>
 
+            <!-- Botão que alterna entre claro/escuro (o JS controla o clique) -->
             <button id="theme-toggle">Escuro</button>
         </div>
 
+        <!-- Linha divisória -->
         <hr>
 
-
+        <!-- Barra de navegação: logo, menu e busca -->
         <nav>
+            <!-- src vazio: o JS provavelmente preenche o caminho da logo -->
+            <img id="logo" src="" alt="Curiosa Mente">
 
             <div id="navbar">
 
+                <!-- Links do menu. O data-id ajuda o JS a saber qual foi clicado -->
                 <ul>
-                    <li><a data-id="1" class="navbar">Tecnologia</a></li>
-                    <li><a data-id="2" class="navbar">Negócios</a></li>
-                    <li><a data-id="3" class="navbar">Ciência</a></li>
-                    <li><a data-id="4" class="navbar">Cultura</a></li>
-                    <li><a data-id="5" class="navbar">Opinião</a></li>
+                    <li><a data-id="1" class="navbar">Ciência</a></li>
+                    <li><a data-id="2" class="navbar">História</a></li>
+                    <li><a data-id="3" class="navbar">Tecnologia</a></li>
+                    <li><a data-id="4" class="navbar">Mente</a></li>
+                    <li><a data-id="5" class="navbar">Cultura</a></li>
                 </ul>
             </div>
 
+            <!-- Campo de busca de notícias -->
             <input type="text" id="search-bar" placeholder="Buscar notícias...">
         </nav>
 
 
     </header>
 
+    <!-- ===== Conteúdo principal ===== -->
     <main>
+        <!-- Seção de destaque: manchete grande + 3 notícias laterais -->
         <section id="home">
             <div id="container-manchete">
+                <!-- Notícia principal. Está tudo vazio porque o JS preenche
+                     com os dados da notícia -->
                 <article id="manchete" class="noticias">
-                    <img src="" alt="">
-                    <h2></h2>
-                    <h1></h1>
-                    <p></p>
+                    <img src="" alt="">   <!-- imagem da manchete -->
+                    <h2></h2>             <!-- etiqueta da categoria -->
+                    <h1></h1>             <!-- título -->
+                    <p></p>               <!-- resumo/descrição -->
                     <p>Por
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span></span>     <!-- autor -->
+                        <span></span>     <!-- data -->
+                        <span></span>     <!-- tempo de leitura (ou similar) -->
                     </p>
                 </article>
             </div>
 
+            <!-- Coluna lateral com 3 notícias menores (também preenchidas pelo JS) -->
             <aside>
                 <div id="card1">
-                    <h1></h1>
+                    <h1></h1>             <!-- título -->
                     <p>
-                        <span></span>
-                        <span></span>
+                        <span></span>     <!-- categoria -->
+                        <span></span>     <!-- data -->
                     </p>
                 </div>
                 <div id="card2">
@@ -89,43 +114,52 @@
             </aside>
         </section>
 
+        <!-- Seção "Últimas": lista de notícias com filtro por categoria -->
         <section id="ultimas">
             <header>
                 <h1>
                     Últimas
                 </h1>
-                <div class="">
-                    <button class="btnUltimas" data-id=" ">Todas</button>
-                    <button clas="btnUltimas" data-id="tecnologia">Tecnologia</button>
-                    <button clas="btnUltimas" data-id="negocios">Negócios</button>
-                    <button clas="btnUltimas" data-id="ciencia">Ciência</button>
-                    <button clas="btnUltimas" data-id="cultura">Cultura</button>
-                    <button clas="btnUltimas" data-id="opiniao">Opinião</button>
+                <!-- Botões de filtro. O data-id diz ao JS qual categoria mostrar -->
+                <div>
+                    <button class="btnUltimas" data-id="todas">Todas</button>
+                    <button class="btnUltimas" data-id="ciencia">Ciência</button>
+                    <button class="btnUltimas" data-id="historia">História</button>
+                    <button class="btnUltimas" data-id="tecnologia">Tecnologia</button>
+                    <button class="btnUltimas" data-id="cultura">Cultura</button>
+                    <button class="btnUltimas" data-id="mente">Mente</button>
                 </div>
             </header>
 
+            <!-- Aqui o JS insere os cards das notícias -->
             <div id="ultimasNoticias">
 
             </div>
 
+            <!-- Atenção: este </div> não tem um <div> de abertura correspondente.
+                 Provavelmente é sobra e pode ser removido. -->
             </div>
-            <button>
+            <!-- Botão para carregar mais notícias na lista -->
+            <button id="carregar-mais" data-id="carregar">
                 Carregar Mais
             </button>
         </section>
 
+        <!-- ===== Rodapé com newsletter ===== -->
         <footer>
-            <div class="">
+            <form>
+                <h1>Newsletter</h1>
+                <p>Receba as principais notícias no seu e-mail.</p>
 
-                <h1></h1>
-                <p></p>
-                <input type="text" placeholder="seu@email.com">
-                <input type="submit" value="Assinar">
+                <!-- Campo de e-mail e botão de assinar -->
+                <div class="assinatura">
+                    <input id="email" type="text" placeholder="seu@email.com">
+                    <input type="submit" value="Assinar">
+                </div>
 
-                <hr>
-                <div>
-                    <p></p>
-
+                <!-- Copyright e links institucionais -->
+                <div class="rodape-links">
+                    <p>© 2026 CuriosaMente</p>
                     <ul>
                         <li>Sobre</li>
                         <li>Contato</li>
@@ -133,8 +167,7 @@
                         <li>Termos</li>
                     </ul>
                 </div>
-            </div>
-
+            </form>
         </footer>
     </main>
 </body>
